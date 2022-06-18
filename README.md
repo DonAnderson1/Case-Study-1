@@ -1,6 +1,6 @@
 # Case Study 1
 The CEO and CFO of Budweiser (the client) have hired ADJ Analytics to answer the 7 questions listed below and beyond those general questions we have 
-speculated / anticipated additional questions that may be of interest to them. Our client only has had one class in statistics and have indicated that 
+speculated / anticipated additional questions that may be of interest to them. Our client has only had one class in statistics and have indicated that 
 we cannot take more than 7 minutes of their time. 
 
 1.   How many breweries are present in each state?
