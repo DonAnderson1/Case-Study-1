@@ -1,6 +1,6 @@
 ---
 title: "Case Study 1"
-author: "Don"
+author: "Donald Anderson"
 output: html_document
 ---
 
@@ -14,13 +14,13 @@ library(kableExtra)
 library(psych)
 ```
 
-## Introduction 
-In this Case study, WE investigated the Beers data set. The data set contains a list of 2,410 US craft beers and Breweries contain 558 US breweries. We give our recommendation to a commercial beer company the top potential markets for their new beer launch based on 9 key insights derived from the data. 
+# Introduction 
+In this case study, I investigate "The Beers Data Set". The data set contains a list of 2,410 US craft beers and Breweries contain 558 US breweries. I provide my recommendations to Budweiser regarding the top markets for the beer industry based on several key business insights derived from the data set provided. 
 
-## Data 
+# Import Data 
 ```{r}
 beers<- read.csv(file = "Beers.csv")
-Breweries<- read.csv(file = "Breweries.csv")
+Breweries<- read.csv(file = "Breweries.csv") 
 ```
 
 1.   How many breweries are present in each state?
@@ -33,7 +33,9 @@ Breweries%>%
   kableExtra::kable(format = "html", padding = 0, caption = "Breweries per State")
 ```
 
+
 Colorado has the most number of breweries.
+
 
 ```{r}
 kk <- Breweries%>%
@@ -63,7 +65,7 @@ tail(merged, 6)%>%
   kableExtra::kable(format = "html", padding = 1)
 ```
 
-The head and the tail functions show how the first 6 and the last 6 rows of the data look. 
+The head and the tail functions display the first 6 rows and the last 6 rows of data. 
 
 3.   Address the missing values in each column.
 
@@ -86,7 +88,7 @@ df3 <- merged %>%
          pred2= NULL)%>%
   drop_na()
 ```
-To deal with missing values in ABV and IBU variables we used linear regression to predict the missing data. In cases where the values were not predictable, that is where both ABV an IBU were missing, the rows were removed form the data set. 
+To deal with missing values in ABV and IBU variables I used linear regression to predict the missing data. The rows were removed from the data set in cases where the values were not predictable (i.e. instances where both ABV an IBU were missing). 
 
 4.   Compute the median alcohol content and international bitterness unit for each state. Plot a bar chart to compare.
 
@@ -108,7 +110,7 @@ ggplot(data = mediandf, aes(y=ABV, x= State, fill= State))+
   theme_bw()+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
-## Warning: Removed 1 row containing missing values (position_stack).
+Note: Removed 1 row containing missing values (position_stack) from the IBU bar chart.
 
 5. Which state has the maximum alcoholic (ABV) beer? Which state has the most bitter (IBU) beer?
 
@@ -120,7 +122,7 @@ maxdf<-df3%>%
 merged$State[which.max(merged$ABV)]
 merged$State[which.max(merged$IBU)]
 ```
-Colorado state has the maximum alcoholic (ABV) beer while Oregon state has the most bitter beers. 
+Colorado has the maximum alcoholic (ABV) beer while Oregon has the most bitter (IBU) beer. 
 
 
 6.   Comment on the summary statistics and distribution of the ABV variable.
@@ -146,7 +148,7 @@ ggplot(data = df3, aes(x= ABV, y=IBU))+
   theme_bw()
 ```
 
-The plot show a strong positive relationship between ABV and IBU in beers. This mean as ABV increase IBU will also increase. 
+The plot shows a strong positive relationship between ABV and IBU in beer. This means as Alcohol by volume of the beer (ABV) increases International Bitterness Units of the beer (IBU) will also increase. 
 
 8.  Budweiser would also like to investigate the difference with respect to IBU and ABV between IPAs (India Pale Ales) and other types of Ale (any beer with “Ale” in its name other than IPA).  You decide to use KNN classification to investigate this relationship.  Provide statistical evidence one way or the other. You can of course assume your audience is comfortable with percentages … KNN is very easy to understand conceptually.
 
@@ -185,16 +187,16 @@ mean(knnPredict == testing$type)
 ```
 
 
-ABV and IBU can be used to predict if the beer is of IPA or ALE type with an accuracy of `r mean(knnPredict == testing$type)` which translates to `rmean(knnPredict == testing$type)*100`% accuracy rate. 
+ABV and IBU can be used to predict whether the beer is of IPA or ALE type with an accuracy of `r mean(knnPredict == testing$type)` which translates to `rmean(knnPredict == testing$type)*100`% accuracy rate. 
 
 9. Knock their socks off!  Find one other useful inference from the data that you feel Budweiser may be able to find value in.  You must convince them why it is important and back up your conviction with appropriate statistical evidence. 
 ```{r}
-#diffrence in meant
-t.test( ABV~type, data = KNNDF)
+# Difference in mean t-test
+t.test( ABV~type, data = KNNDF) 
 ```
 
 There is a claim that there is no difference in ABV mean between IPA and Ale beer type. The t-test shows a p-value less than 0.05 significance level. There we reject the null hypothesis and conclude that indeed there is a difference in ABV mean of IPA and Ale beer type. 
 
-## Conclusion.
+# Conclusion:
 
-Colorado states is the leading state in number of breweries. ABV and IBU have a positive correlation. There are both important variables in predicting the type of beer. Finally, some beers have higher ABV than others. 
+Colorado is the leading state in number of breweries. ABV and IBU have a positive correlation. There are both important variables in predicting the type of beer. Finally, some beers have higher ABV than others. 
